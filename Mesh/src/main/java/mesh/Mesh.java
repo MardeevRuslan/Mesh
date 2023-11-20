@@ -16,6 +16,7 @@ public class Mesh {
         return width;
     }
 
+    private int NUMBER_ITERATIONS = 100;
     private int minStepLength;
     private int minStepWidth;
     private int countStepLength = 0;
@@ -42,13 +43,14 @@ public class Mesh {
 
     public Mesh() {
         init();
+        calculationMesh();
     }
 
 
     private void init() {
         Properties properties = new Properties();
 
-        try (FileInputStream fileInputStream = new FileInputStream("target/resources/conf.conf")) {
+        try (FileInputStream fileInputStream = new FileInputStream("target/resources/config.properties")) {
             properties.load(fileInputStream);
 
             length = Integer.parseInt(properties.getProperty("length"));
@@ -60,16 +62,16 @@ public class Mesh {
         }
     }
 
-    public void calculationMesh() {
+    private void calculationMesh() {
         calculationStepWidth();
         calculationStepLength();
 
     }
 
     private void calculationStepLength() {
-        int minRemainderDivision = 100;
+        int minRemainderDivision = length;
         stepLength = minStepLength;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < NUMBER_ITERATIONS; i++) {
             int remainderDivision = length % minStepLength;
             int countStepCurrent = length / minStepLength + 1;
             if (remainderDivision < minRemainderDivision) {
@@ -94,9 +96,9 @@ public class Mesh {
 
 
     private void calculationStepWidth() {
-        int minRemainderDivision = 100;
+        int minRemainderDivision = width;
         stepWidth = minStepWidth;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < NUMBER_ITERATIONS; i++) {
             int remainderDivision = width % minStepWidth;
             int countStepCurrent = width / minStepWidth + 1;
             if (remainderDivision < minRemainderDivision) {
