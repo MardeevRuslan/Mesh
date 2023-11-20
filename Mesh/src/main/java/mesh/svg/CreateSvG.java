@@ -1,5 +1,6 @@
-package mesh;
+package mesh.svg;
 
+import mesh.mesh.Mesh;
 import org.apache.batik.anim.dom.SVGDOMImplementation;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Element;
@@ -19,15 +20,20 @@ import java.io.IOException;
 public class CreateSvG {
 
     private SVGDocument document;
-    private final String outputFilePath = "target/resources/mesh.svg";
+    private final String outputFilePath = "./mesh.svg";
     private final String svgNS = "http://www.w3.org/2000/svg";
     private final int RADIUS = 100;
     private final String FILL_NONE = "none";
+
     private final String FILL_BLACK = "black";
     private final String FILL_WHITE = "white";
-    private Mesh mesh = new Mesh();
+    private Mesh mesh;
     private final String STROKE = "black";
     private final String STROKE_WIDTH = "5";
+
+    public CreateSvG(Mesh mesh) {
+        this.mesh = mesh;
+    }
 
 
     public void create() throws TransformerException, IOException {
@@ -70,7 +76,6 @@ public class CreateSvG {
         DOMSource source = new DOMSource(document);
         StreamResult result = new StreamResult(new FileOutputStream(outputFilePath));
         transformer.transform(source, result);
-        System.out.println("New SVG file created: " + outputFilePath);
     }
 
     private void openSvgDocument() throws IOException {
