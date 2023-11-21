@@ -22,7 +22,9 @@ public class CreateSvG {
     private SVGDocument document;
     private final String outputFilePath = "./mesh.svg";
     private final String svgNS = "http://www.w3.org/2000/svg";
-    private final int RADIUS = 100;
+    private final int RADIUS = 20;
+
+    private final int COUNT_CIRCLE = 6;
 
     private final int DIAMETER = 2 * RADIUS;
     private final String FILL_NONE = "none";
@@ -31,7 +33,7 @@ public class CreateSvG {
     private final String FILL_WHITE = "white";
     private Mesh mesh;
     private final String STROKE = "black";
-    private final String STROKE_WIDTH = "5";
+    private final String STROKE_WIDTH = "1";
 
     public CreateSvG(Mesh mesh) {
         this.mesh = mesh;
@@ -57,8 +59,8 @@ public class CreateSvG {
     }
 
     private void completionSvgDocument() {
-        int distanceX = mesh.getStepLength();
-        int distanceY = mesh.getStepWidth();
+        int distanceX = mesh.getStepWidth();
+        int distanceY = mesh.getStepLength();
         int rows = mesh.getCountStepLength();
         int columns = mesh.getCountStepWidth();
         for (int i = 0; i < rows; i++) {
@@ -116,17 +118,18 @@ public class CreateSvG {
     }
 
     private void appendCircle(int cx, int  cy ) {
-        for (int radius = RADIUS; radius > 20; radius -= 20) {
-            Element circle = createCircle(cx, cy, radius, FILL_NONE);
+        int radius =RADIUS;
+        for (int i =0; i < COUNT_CIRCLE; i++, radius-=2) {
+            Element circle = createCircle(cx, cy,(int) radius, FILL_NONE);
             appendElement(circle);
         }
-        Element circle = createCircle(cx, cy, RADIUS - 60, FILL_BLACK);
+        Element circle = createCircle(cx, cy, RADIUS - 12, FILL_BLACK);
         appendElement(circle);
     }
 
 
     private void appendRectangleVertically(int cx, int cy ) {
-        int rectangleWidth = 4;
+        int rectangleWidth = 2;
         int rectangleHeight = DIAMETER;
         int rectangleX = cx - (rectangleWidth / 2);
         int rectangleY = cy - RADIUS;

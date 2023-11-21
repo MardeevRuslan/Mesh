@@ -49,7 +49,6 @@ public class Mesh {
         for (int i = 0; i < NUMBER_ITERATIONS; i++) {
             int remainderDivision = length % minStepLength;
             int countStepCurrent = length / minStepLength + 1;
-
             if (remainderDivision < minRemainderDivision) {
                 minRemainderDivision = remainderDivision;
                 stepLength = minStepLength;
@@ -66,7 +65,7 @@ public class Mesh {
     }
 
     private void appendResult(StringBuilder result, int step, int countStep, int minRemainderDivision) {
-        result.append("расстояние между точками = ").append(step).append("мм  ");
+        result.append("расстояние между точками = ").append(step).append(" мм  ");
         result.append("количество точек = ").append(countStep).append("  ");
         result.append("остаток стола = ").append(minRemainderDivision).append("  ");
         result.append("\n");
