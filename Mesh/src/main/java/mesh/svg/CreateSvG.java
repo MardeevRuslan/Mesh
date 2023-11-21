@@ -23,6 +23,8 @@ public class CreateSvG {
     private final String outputFilePath = "./mesh.svg";
     private final String svgNS = "http://www.w3.org/2000/svg";
     private final int RADIUS = 100;
+
+    private final int DIAMETER = 2 * RADIUS;
     private final String FILL_NONE = "none";
 
     private final String FILL_BLACK = "black";
@@ -47,11 +49,11 @@ public class CreateSvG {
     private void createSvgDocument() {
         DOMImplementation domImpl = SVGDOMImplementation.getDOMImplementation();
         this.document = (SVGDocument) domImpl.createDocument(svgNS, "svg", null);
-        int svgWidth = mesh.getWidth();
-        int svgHeight = mesh.getLength();
+        int svgWidth = mesh.getWidth() + DIAMETER;
+        int svgHeight = mesh.getLength() + DIAMETER;
         Element svgRootElement = document.getDocumentElement();
-        svgRootElement.setAttributeNS(null, "width", String.valueOf(svgWidth) + RADIUS);
-        svgRootElement.setAttributeNS(null, "height", String.valueOf(svgHeight) + RADIUS);
+        svgRootElement.setAttributeNS(null, "width", String.valueOf(svgWidth) );
+        svgRootElement.setAttributeNS(null, "height", String.valueOf(svgHeight) );
     }
 
     private void completionSvgDocument() {
@@ -125,7 +127,7 @@ public class CreateSvG {
 
     private void appendRectangleVertically(int cx, int cy ) {
         int rectangleWidth = 4;
-        int rectangleHeight = RADIUS * 2;
+        int rectangleHeight = DIAMETER;
         int rectangleX = cx - (rectangleWidth / 2);
         int rectangleY = cy - RADIUS;
         Element rectangle = createRectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
@@ -133,7 +135,7 @@ public class CreateSvG {
     }
 
     private void appendRectangleHorizontally(int cx, int cy ) {
-        int rectangleWidth = RADIUS * 2;
+        int rectangleWidth = DIAMETER;
         int  rectangleHeight = 2;
         int  rectangleX = cx - RADIUS;
         int rectangleY = cy - (rectangleHeight / 2);

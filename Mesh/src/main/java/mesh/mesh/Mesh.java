@@ -1,49 +1,22 @@
 package mesh.mesh;
 
+import lombok.*;
+
 import java.awt.*;
 
+@Data
+@RequiredArgsConstructor
 public class Mesh {
-
-    private List input;
+    private final List input;
     private int length;
     private int width;
-
-    public int getLength() {
-        return length;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    private int NUMBER_ITERATIONS = 100;
+    private final int NUMBER_ITERATIONS = 100;
     private int minStepLength;
     private int minStepWidth;
     private int countStepLength = 0;
     private int stepLength;
-
-    public int getCountStepLength() {
-        return countStepLength;
-    }
-
-    public int getStepLength() {
-        return stepLength;
-    }
-
-    public int getCountStepWidth() {
-        return countStepWidth;
-    }
-
-    public int getStepWidth() {
-        return stepWidth;
-    }
-
     private int countStepWidth = 0;
     private int stepWidth;
-
-    public Mesh(List input) {
-        this.input = input;
-    }
 
 
     private boolean init() {
@@ -65,7 +38,7 @@ public class Mesh {
         }
         String resWidth = calculationStepWidth();
         String resLength = calculationStepLength();
-        return "По длине:\n" + resLength + "По ширине:\n" + resWidth;
+        return "По длине: " + resLength + "По ширине: " + resWidth;
     }
 
     private String calculationStepLength() {
@@ -93,9 +66,9 @@ public class Mesh {
     }
 
     private void appendResult(StringBuilder result, int step, int countStep, int minRemainderDivision) {
-        result.append("длина шага = ").append(step).append("\n");
-        result.append("количество шагов = ").append(countStep).append("\n");
-        result.append("остаток стола = ").append(minRemainderDivision).append("\n");
+        result.append("расстояние между точками = ").append(step).append("мм  ");
+        result.append("количество точек = ").append(countStep).append("  ");
+        result.append("остаток стола = ").append(minRemainderDivision).append("  ");
         result.append("\n");
     }
 

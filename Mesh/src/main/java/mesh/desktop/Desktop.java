@@ -28,6 +28,7 @@ public class Desktop {
         textField3 = new JTextField();
         textField4 = new JTextField();
         textField5 = new JTextArea();
+        textField5.setEditable(false);
         textField5.setLineWrap(true);
     }
 
@@ -59,13 +60,13 @@ public class Desktop {
     private void createPanel() {
         panel = new JPanel();
         panel.setLayout(new GridLayout(6, 2));
-        panel.add(new JLabel("Введите длину стола, мм:"));
+        panel.add(new JLabel("Длина стола, мм:"));
         panel.add(textField1);
-        panel.add(new JLabel("Введите ширину стола, мм:"));
+        panel.add(new JLabel("Ширина стола, мм:"));
         panel.add(textField2);
-        panel.add(new JLabel("Введите минимальный шаг по длине, мм:"));
+        panel.add(new JLabel("Шаг по длине, мм:"));
         panel.add(textField3);
-        panel.add(new JLabel("Введите минимальный шаг по ширине, мм:"));
+        panel.add(new JLabel("Шаг по ширине, мм:"));
         panel.add(textField4);
         panel.add(new JLabel("Результат"));
         panel.add(textField5);
@@ -79,7 +80,7 @@ public class Desktop {
         createLogicButton();
         createPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 800);
+        frame.setSize(1100, 300);
         frame.setVisible(true);
     }
 }
