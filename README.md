@@ -17,9 +17,7 @@ Apache Maven (для сборки проекта)
 
 git clone https://github.com/MardeevRuslan/Mesh.git
 
-или
 
-git clone git@github.com:MardeevRuslan/Mesh.git
 
 
 
